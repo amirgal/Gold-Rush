@@ -39,25 +39,29 @@ class GoldRush extends Matrix {
         const otherPlayer = this[`player${otherPlayerNum}`].coords
         switch(direction) {
             case 'up':
-                if(currentPlayer.y-1 == otherPlayer.y && currentPlayer.x == otherPlayer.x ) {
+                if(currentPlayer.y == 0 || 
+                this.get(currentPlayer.y-1,currentPlayer.x) == otherPlayerNum) {
                     return false
                 }
-                return currentPlayer.y == 0 ? false : true
+                return true
             case 'down':
-                if(currentPlayer.y+1 == otherPlayer.y && currentPlayer.x == otherPlayer.x ){
+                if(currentPlayer.y == this.bounds.y || 
+                this.get(currentPlayer.y+1,currentPlayer.x) == otherPlayerNum){
                     return false
                 }
-                return currentPlayer.y == this.bounds.y ? false : true
+                return true
             case 'left':
-                if(currentPlayer.y == otherPlayer.y && currentPlayer.x-1 == otherPlayer.x ) {
+                if(currentPlayer.x == 0 ||
+                this.get(currentPlayer.y,currentPlayer.x-1) == otherPlayerNum) {
                     return false
                 }
-                return currentPlayer.x == 0 ? false : true
+                return true
             case 'right':
-                if(currentPlayer.y == otherPlayer.y && currentPlayer.x+1 == otherPlayer.x ){
+                if(currentPlayer.x == this.bounds.x ||
+                this.get(currentPlayer.y,currentPlayer.x+1) == otherPlayerNum){
                     return false
                 }
-                return currentPlayer.x == this.bounds.x ? false : true
+                return true
         }
     }
 
