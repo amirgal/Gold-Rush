@@ -1,13 +1,25 @@
 // const Renderer = module.require('./Renderer')
 // const GoldRush = module.require('./GoldRush')
-
 const renderer = new Renderer()
-const board = new GoldRush(5,5)
+let board
+let gameActive = false
 
-renderer.renderBoard(board)
-renderer.renderScores(board)
+const startGame = function(rowNum,colNum) {
+    gameActive = true
+    board = new GoldRush(rowNum,colNum)
+    $('#game-container').css({"grid-template-rows": `repeat(${rowNum},1fr)`,
+    "grid-template-columns": `repeat(${colNum},1fr)`})
+    renderer.renderBoard(board)
+    renderer.renderScores(board)
+}
+
+$('#start-button').on('click', function() {
+    const [rowNum,colNum] = [$('#row-input').val(),$('#col-input').val()]
+    rowNum && colNum ? startGame(rowNum,colNum) : alert('Must enter rows and columns')
+})
 
 $(document).keypress(function (e) {
+    if(!gameActive) {return}
     switch (e.which) {
         case 119:           //w
             board.movePlayer(1, "up")
@@ -32,7 +44,9 @@ $(document).keypress(function (e) {
             break 
         case 106:           //l
             board.movePlayer(2, "left")
-            break    
+            break 
+        default: 
+            return   
     }
     renderer.renderBoard(board)
     renderer.renderScores(board)

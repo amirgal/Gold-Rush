@@ -11,8 +11,8 @@ class Renderer {
 
     renderScores(board) {
         const newHTML = this.scoreTemplate(board);
-        $('#footer').empty();
-        $('#footer').append(newHTML);
+        $('#scores').empty();
+        $('#scores').append(newHTML);
     }
 }
 

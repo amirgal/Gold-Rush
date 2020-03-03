@@ -10,7 +10,7 @@ class player {
 
 class GoldRush extends Matrix {
     constructor(rowNum,colNum) {
-        super(rowNum,colNum, '.')
+        super(rowNum,colNum, ' ')
         this.bounds = {y: rowNum-1, x: colNum-1}
         this.player1 = new player(1)
         this.player2 = new player(2)
@@ -25,7 +25,7 @@ class GoldRush extends Matrix {
         for (let i = 0; i < numOfCoins; i++) {
             const y = Math.floor(Math.random()*rowNum)
             const x = Math.floor(Math.random()*colNum)
-            if(this.matrix[y][x] == '.'){
+            if(this.matrix[y][x] == ' '){
                 this.alter(y,x,'c')
             } else {
                 i--
@@ -66,7 +66,7 @@ class GoldRush extends Matrix {
     }
 
     moveUp(coords,playerNum) {
-        this.alter(coords.y,coords.x,'.')
+        this.alter(coords.y,coords.x,' ')
         if(this.get(coords.y-1,coords.x) == 'c'){
             this[`player${playerNum}`].score += 10
         }
@@ -75,7 +75,7 @@ class GoldRush extends Matrix {
     }
 
     moveDown(coords,playerNum) {
-        this.alter(coords.y,coords.x,'.')
+        this.alter(coords.y,coords.x,' ')
         if(this.get(coords.y+1,coords.x) == 'c'){
             this[`player${playerNum}`].score += 10
         }
@@ -84,7 +84,7 @@ class GoldRush extends Matrix {
     }
 
     moveLeft(coords,playerNum) {
-        this.alter(coords.y,coords.x,'.')
+        this.alter(coords.y,coords.x,' ')
         if(this.get(coords.y,coords.x-1) == 'c'){
             this[`player${playerNum}`].score += 10
         }
@@ -93,7 +93,7 @@ class GoldRush extends Matrix {
     }
 
     moveRight(coords,playerNum) {
-        this.alter(coords.y,coords.x,'.')
+        this.alter(coords.y,coords.x,' ')
         if(this.get(coords.y,coords.x+1) == 'c'){
             this[`player${playerNum}`].score += 10
         }

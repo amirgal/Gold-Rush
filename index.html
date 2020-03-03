@@ -11,7 +11,14 @@
 <body>
     
     <div id="game-container"></div>
-    <div id="footer"></div>
+    <div id="scores"></div>
+    <div id="footer">
+        <div id="inputs">
+            <input type="number" id="row-input" class="input" placeholder="rows">
+            <input type="number" id="col-input" class="input" placeholder="cols">
+        </div>
+        <button id="start-button">Start</button>
+    </div>
 
     <script id="matrix-template" type="text/x-handlebars">
         {{#each matrix}}
