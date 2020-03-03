@@ -11,6 +11,15 @@ const startGame = function(rowNum,colNum) {
     "grid-template-columns": `repeat(${colNum},1fr)`})
     renderer.renderBoard(board)
     renderer.renderScores(board)
+    setTimeout(function(){
+        endGame()
+    }, 10000)
+}
+
+const endGame = function() {
+    gameActive = false
+    const winner = board.player1.score > board.player2.score ? 'player 1' : 'player 2'
+    renderer.renderGameOver(winner)
 }
 
 $('#start-button').on('click', function() {

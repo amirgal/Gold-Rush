@@ -10,7 +10,7 @@ class player {
 
 class GoldRush extends Matrix {
     constructor(rowNum,colNum) {
-        super(rowNum,colNum, ' ')
+        super(rowNum,colNum, 'c')
         this.bounds = {y: rowNum-1, x: colNum-1}
         this.player1 = new player(1)
         this.player2 = new player(2)
@@ -20,13 +20,14 @@ class GoldRush extends Matrix {
         this.setCoins(rowNum,colNum)
     }
 
+    //changed to making walls num of coins was /2
     setCoins(rowNum,colNum){
-        const numOfCoins = Math.floor((rowNum*colNum)/2)
+        const numOfCoins = Math.floor((rowNum*colNum)/4)
         for (let i = 0; i < numOfCoins; i++) {
             const y = Math.floor(Math.random()*rowNum)
             const x = Math.floor(Math.random()*colNum)
-            if(this.matrix[y][x] == ' '){
-                this.alter(y,x,'c')
+            if(this.matrix[y][x] == 'c'){  //was ' ' for coins
+                this.alter(y,x,'w')         //was 'c' for coins
             } else {
                 i--
             }
@@ -36,29 +37,32 @@ class GoldRush extends Matrix {
     validMove(playerNum,direction) {
         const otherPlayerNum = playerNum == 1 ? 2 : 1
         const currentPlayer = this[`player${playerNum}`].coords
-        const otherPlayer = this[`player${otherPlayerNum}`].coords
         switch(direction) {
             case 'up':
                 if(currentPlayer.y == 0 || 
-                this.get(currentPlayer.y-1,currentPlayer.x) == otherPlayerNum) {
+                this.get(currentPlayer.y-1,currentPlayer.x) == otherPlayerNum ||
+                this.get(currentPlayer.y-1,currentPlayer.x) == 'w') {
                     return false
                 }
                 return true
             case 'down':
                 if(currentPlayer.y == this.bounds.y || 
-                this.get(currentPlayer.y+1,currentPlayer.x) == otherPlayerNum){
+                this.get(currentPlayer.y+1,currentPlayer.x) == otherPlayerNum ||
+                this.get(currentPlayer.y+1,currentPlayer.x) == 'w'){
                     return false
                 }
                 return true
             case 'left':
                 if(currentPlayer.x == 0 ||
-                this.get(currentPlayer.y,currentPlayer.x-1) == otherPlayerNum) {
+                this.get(currentPlayer.y,currentPlayer.x-1) == otherPlayerNum ||
+                this.get(currentPlayer.y,currentPlayer.x-1) == 'w') {
                     return false
                 }
                 return true
             case 'right':
                 if(currentPlayer.x == this.bounds.x ||
-                this.get(currentPlayer.y,currentPlayer.x+1) == otherPlayerNum){
+                this.get(currentPlayer.y,currentPlayer.x+1) == otherPlayerNum ||
+                this.get(currentPlayer.y,currentPlayer.x+1) == 'w'){
                     return false
                 }
                 return true

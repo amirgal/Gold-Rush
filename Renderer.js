@@ -14,6 +14,10 @@ class Renderer {
         $('#scores').empty();
         $('#scores').append(newHTML);
     }
+
+    renderGameOver(winner) {
+        $('#game-container').append(`<div id="game-over">Game Over!<br>The winner is: ${winner}</div>`)
+    }
 }
 
 // module.exports = Renderer

@@ -60,3 +60,12 @@ body {
     padding: 0;
 }
 
+#game-over {
+    font-size: 50px;
+    text-align: center;
+    font-weight: bolder;
+    position: absolute;
+    color: brown;
+    top: 40%;
+    left: 25%;
+}
