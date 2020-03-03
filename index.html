@@ -22,9 +22,14 @@
     </script>
 
     <script id="score-template" type="text/x-handlebars">
-        {{#each player}}
-            <span id='score'>{{score}}</span>
-        {{/each}}
+        <div class="player">
+            <span>player 1 :</span>
+            <span>{{player1.score}}</span>
+        </div>
+        <div class="player">
+            <span>player 2 :</span>
+            <span>{{player2.score}}</span>
+        </div>
     </script>
     
 

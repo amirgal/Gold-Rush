@@ -15,6 +15,13 @@ body {
     width: 90%;
 }
 
+#footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+}
+
 .box {
     display: grid;
     align-content: center;
