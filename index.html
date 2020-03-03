@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="game-container"></div>
+    <div id="footer"></div>
+
+    <script id="matrix-template" type="text/x-handlebars">
+        {{#each matrix}}
+            {{#each this}}
+                <div class="box">{{this}}</div>
+            {{/each}}
+        {{/each}}
+        
+    </script>
+
+    <script src="Matrix.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="GoldRush.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
