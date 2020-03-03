@@ -19,8 +19,14 @@
                 <div class="box">{{this}}</div>
             {{/each}}
         {{/each}}
-        
     </script>
+
+    <script id="score-template" type="text/x-handlebars">
+        {{#each player}}
+            <span id='score'>{{score}}</span>
+        {{/each}}
+    </script>
+    
 
     <script src="Matrix.js"></script>
     <script src="Renderer.js"></script>

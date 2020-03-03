@@ -5,6 +5,7 @@ const renderer = new Renderer()
 const board = new GoldRush(5,5)
 
 renderer.renderBoard(board)
+renderer.renderScores(board)
 
 $(document).keypress(function (e) {
     switch (e.which) {
@@ -34,4 +35,5 @@ $(document).keypress(function (e) {
             break    
     }
     renderer.renderBoard(board)
+    renderer.renderScores(board)
 })
