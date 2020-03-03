@@ -33,7 +33,7 @@ class GoldRush extends Matrix {
         }
     }
 
-    inBounds(playerNum,direction) {
+    validMove(playerNum,direction) {
         const otherPlayerNum = playerNum == 1 ? 2 : 1
         const currentPlayer = this[`player${playerNum}`].coords
         const otherPlayer = this[`player${otherPlayerNum}`].coords
@@ -98,7 +98,7 @@ class GoldRush extends Matrix {
     }
 
     movePlayer(playerNum,direction) {
-        if(!this.inBounds(playerNum,direction)) {return}
+        if(!this.validMove(playerNum,direction)) {return}
         const coords = this[`player${playerNum}`].coords
         switch(direction) {
             case 'up':
@@ -118,16 +118,6 @@ class GoldRush extends Matrix {
     }
 }
 
-// module.exports = GoldRush
-// const board = new GoldRush(5,5)
-
-// board.print()
-// board.movePlayer(1,'right')
-// board.movePlayer(1,'right')
-// console.log('------------');
-
-// board.print()
-// console.log(board.player1.score);
 
 
 
