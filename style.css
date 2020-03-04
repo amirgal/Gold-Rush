@@ -15,7 +15,6 @@ body {
 #footer {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    /* grid-template-rows: 1fr 1fr; */
     justify-items: center;
     align-items: center;
     width: 90%;

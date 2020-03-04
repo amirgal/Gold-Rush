@@ -24,7 +24,7 @@ const endGame = function() {
 
 $('#start-button').on('click', function() {
     const [rowNum,colNum] = [$('#row-input').val(),$('#col-input').val()]
-    rowNum && colNum ? startGame(rowNum,colNum) : alert('Must enter rows and columns')
+    rowNum > 1 && colNum > 1 ? startGame(rowNum,colNum) : alert('Must enter rows and columns larger then 1')
 })
 
 $(document).keypress(function (e) {
