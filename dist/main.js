@@ -1,5 +1,3 @@
-// const Renderer = module.require('./Renderer')
-// const GoldRush = module.require('./GoldRush')
 const renderer = new Renderer()
 let board
 let gameActive = false

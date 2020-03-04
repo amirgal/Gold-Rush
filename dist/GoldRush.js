@@ -1,5 +1,3 @@
-// const Matrix = module.require('./Matrix')
-
 class player {
     constructor(playerNum) {
         this.playerNum = playerNum
@@ -17,17 +15,16 @@ class GoldRush extends Matrix {
         this.player2.coords = {x: colNum-1, y: rowNum-1}
         this.alter(0,0,1)
         this.alter(rowNum-1,colNum-1,2)
-        this.setCoins(rowNum,colNum)
+        this.setWalls(rowNum,colNum)
     }
 
-    //changed to making walls num of coins was /2
-    setCoins(rowNum,colNum){
+    setWalls(rowNum,colNum){
         const numOfCoins = Math.floor((rowNum*colNum)/4)
         for (let i = 0; i < numOfCoins; i++) {
             const y = Math.floor(Math.random()*rowNum)
             const x = Math.floor(Math.random()*colNum)
-            if(this.matrix[y][x] == 'c'){  //was ' ' for coins
-                this.alter(y,x,'w')         //was 'c' for coins
+            if(this.matrix[y][x] == 'c'){  
+                this.alter(y,x,'w')         
             } else {
                 i--
             }

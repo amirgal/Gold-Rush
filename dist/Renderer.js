@@ -19,5 +19,3 @@ class Renderer {
         $('#game-container').append(`<div id="game-over">Game Over!<br>The winner is: ${winner}</div>`)
     }
 }
-
-// module.exports = Renderer
