@@ -1,10 +1,12 @@
 body {
     margin:0;
     margin-left:5%;
+    margin-top:15px;
     width: 95vw;
     height: 97vh;
     display: grid;
     grid-template-rows: 20fr 1fr 1fr;
+    background-color: slateblue;
 }
 .wall {
     background-color: rgb(97, 69, 0);  
