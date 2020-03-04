@@ -60,3 +60,19 @@ $(document).keypress(function (e) {
     renderer.renderBoard(board)
     renderer.renderScores(board)
 })
+
+Handlebars.registerHelper('isWall', function (value) {
+    return value === 'w';
+  });
+
+  Handlebars.registerHelper('isCoin', function (value) {
+    return value === 'c';
+  });
+
+  Handlebars.registerHelper('isPlayer1', function (value) {
+    return value === 1;
+  });
+
+  Handlebars.registerHelper('isPlayer2', function (value) {
+    return value === 2;
+  });

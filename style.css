@@ -6,10 +6,27 @@ body {
     display: grid;
     grid-template-rows: 20fr 1fr 1fr;
 }
+.wall {
+    background-color: rgb(97, 69, 0);  
+}
+.fa-bone {
+    color: ivory;
+}
+#player1 {
+    color: silver;
+    font-size: 60px;
+}
+
+#player2 {
+    color: skyblue;
+    font-size: 60px;
+}
 
 #game-container {
     display: grid;
     width: 90%;
+    background-color: olivedrab;
+    border: 2px solid black;
 }
 
 #footer {
