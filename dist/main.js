@@ -74,9 +74,3 @@ Handlebars.registerHelper('isWall', function (value) {
   Handlebars.registerHelper('isPlayer2', function (value) {
     return value === 2;
   });
-
-  const socket = io.connect('http://localhost');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
