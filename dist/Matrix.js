@@ -4,6 +4,10 @@ class Matrix {
         this.matrix = this.generateMatrix(numRows,numColumns, constVal)
     }
 
+    getDimensions() {
+        return {rows: this.matrix.length, cols: this.matrix[0].length}
+    }
+
     generateMatrix(numRows, numColumns, constVal) {
         let matrix = []
         let num = 1

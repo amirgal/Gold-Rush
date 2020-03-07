@@ -6,11 +6,8 @@ const socket = io();
 
 const startGame = function(rowNum,colNum) {
     gameActive = true
-    board = new GoldRush(rowNum,colNum)
-    $('#game-container').css({"grid-template-rows": `repeat(${rowNum},1fr)`,
-    "grid-template-columns": `repeat(${colNum},1fr)`})
-    renderer.renderBoard(board)
-    renderer.renderScores(board)
+    socket.emit('game start',new GoldRush(rowNum,colNum))
+    
     // setTimeout(function(){
     //     endGame()
     // }, 10000)
@@ -24,7 +21,17 @@ const endGame = function() {
 
 $('#start-button').on('click', function() {
     const [rowNum,colNum] = [$('#row-input').val(),$('#col-input').val()]
-    rowNum > 1 && colNum > 1 ? startGame(rowNum,colNum) : alert('Must enter rows and columns larger then 1')
+    rowNum > 1 && colNum > 1 ?  startGame(rowNum,colNum) : alert('Must enter rows and columns larger then 1')
+})
+
+socket.on('game start', function(newBoard){
+    const dimensions = newBoard.dimensions  
+    board = new GoldRush(dimensions.rows,dimensions.cols)
+    board.matrix = newBoard.matrix
+    $('#game-container').css({"grid-template-rows": `repeat(${dimensions.rows},1fr)`,
+    "grid-template-columns": `repeat(${dimensions.cols},1fr)`})
+    renderer.renderBoard(board)
+    renderer.renderScores(board)
 })
 
 $(document).keypress(function (e) {
@@ -33,7 +40,6 @@ $(document).keypress(function (e) {
 })
 
 socket.on('key press', function(key){
-    console.log(key + ' was emitted from server');
     switch (key) {
         case 'w':           //w
             board.movePlayer(1, "up")

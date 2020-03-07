@@ -12,6 +12,7 @@ class GoldRush extends Matrix {
         this.bounds = {y: rowNum-1, x: colNum-1}
         this.player1 = new player(1)
         this.player2 = new player(2)
+        this.dimensions = this.getDimensions()
         this.player2.coords = {x: colNum-1, y: rowNum-1}
         this.alter(0,0,1)
         this.alter(rowNum-1,colNum-1,2)

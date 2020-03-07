@@ -10,7 +10,6 @@ app.use(express.static(path.join(__dirname,'dist')))
 app.use(express.static(path.join(__dirname,'node_modules')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
-// app.use('/', api)
 
 io.on('connection', function(socket){
     console.log('a user connected');
@@ -20,11 +19,12 @@ io.on('connection', function(socket){
     })
 
     socket.on('keypress', function(key) {
-        // console.log('user pressed: '+key);
         io.emit('key press', key)
     })
 
-    socket.on('game start' , function())
+    socket.on('game start' , function(board) {    
+        io.emit('game start', board)
+    })
 })
 
 const port = 3000
@@ -32,6 +32,4 @@ http.listen(port, function() {
     console.log(('Running server on port '+port));
     
 })
-// app.listen(port, function () {
-//     console.log(`Running server on port ${port}`)
-// })
+
