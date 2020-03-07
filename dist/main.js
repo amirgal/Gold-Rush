@@ -17,11 +17,10 @@ const showGame = function() {
 
 socket.on('login',function(users) {
     activeUsers = users
-
-    // $('#chat').empty()
-    // activeUsers.forEach(user => {
-    //     $('#chat').append(`<div class="message"><span class="chat-name">${user} is logged in!</span></div>`)
-    // });
+    $('#chat').empty()
+    activeUsers.forEach(user => {
+        $('#chat').append(`<div class="message user">${user}:  is Logged in!</div>`)
+    });
 })
 
 $('#send-msg-btn').on('click', function(){
@@ -31,7 +30,7 @@ $('#send-msg-btn').on('click', function(){
 })
 
 socket.on('chat message', function(msg, sender){
-    $('#chat').append(`<div class="message"><span class="chat-name">${sender}</span>:  ${msg}</div>`)
+    $('#chat').append(`<div class="message"><span class="chat-name">${sender}</span>:    ${msg}</div>`)
 })
 
 const startGame = function(rowNum,colNum) {
