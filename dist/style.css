@@ -1,14 +1,34 @@
 body {
     margin:0;
-    /* margin-left:5%; */
-    margin-top:15px;
-    width: 95vw;
-    height: 97vh;
+    margin-top:10px;
+    width: 99vw;
+    height: 98vh;
     display: grid;
-    grid-template-rows: 20fr 1fr 1fr;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 20fr 1fr;
     background-color: slateblue;
     justify-content: center
 }
+
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    border:2px solid black;
+}
+
+#chat {
+    width: 100%;
+    height: 100%;
+    background-color: antiquewhite;
+}
+
+#chat-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
 .wall {
     background-color: rgb(97, 69, 0);  
 }

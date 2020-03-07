@@ -8,7 +8,13 @@
     <title>Gold Rush</title>
 </head>
 <body>
-    
+    <div id="chat-container">
+        <div class="chat" id="chat"></div>
+        <div id="chat-inputs">
+            <textarea id="message-input" placeholder="Enter Message" rows="4"></textarea>
+            <button class="btn btn-primary" id="send-msg-btn">Send Message</button>
+        </div>
+    </div>
     <div id="game-container"></div>
     <div id="scores"></div>
     <div id="footer">
@@ -50,6 +56,7 @@
 
     <script src="socket.io-client/dist/socket.io.js"></script>
     <script src="jquery/dist/jquery.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.js"></script>
     <script src="handlebars/dist/handlebars.js"></script>
     <script src="Matrix.js"></script>
     <script src="Renderer.js"></script>

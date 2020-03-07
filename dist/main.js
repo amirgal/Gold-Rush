@@ -3,6 +3,15 @@ let board
 let gameActive = false
 const socket = io();
      
+$('#send-msg-btn').on('click', function(){
+    const msg = $('#message-input').val()
+    $('#message-input').val('')
+    socket.emit('chat message', msg)
+})
+
+socket.on('chat message', function(msg){
+    $('#chat').append(`<div class="message">${msg}</div>`)
+})
 
 const startGame = function(rowNum,colNum) {
     socket.emit('game start',new GoldRush(rowNum,colNum))

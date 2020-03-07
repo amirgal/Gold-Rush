@@ -25,6 +25,10 @@ io.on('connection', function(socket){
     socket.on('game start' , function(board) {    
         io.emit('game start', board)
     })
+
+    socket.on('chat message', function(msg){
+        io.emit('chat message', msg)
+    })
 })
 
 const port = 3000
