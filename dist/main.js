@@ -11,9 +11,9 @@ const startGame = function(rowNum,colNum) {
     "grid-template-columns": `repeat(${colNum},1fr)`})
     renderer.renderBoard(board)
     renderer.renderScores(board)
-    setTimeout(function(){
-        endGame()
-    }, 10000)
+    // setTimeout(function(){
+    //     endGame()
+    // }, 10000)
 }
 
 const endGame = function() {
@@ -29,31 +29,34 @@ $('#start-button').on('click', function() {
 
 $(document).keypress(function (e) {
     if(!gameActive) {return}
-    socket.emit('keypress', e.which)
-    console.log(e.key);
-    switch (e.which) {
-        case 119:           //w
+    socket.emit('keypress', e.key)
+})
+
+socket.on('key press', function(key){
+    console.log(key + ' was emitted from server');
+    switch (key) {
+        case 'w':           //w
             board.movePlayer(1, "up")
             break
-        case 100:           //d
+        case 'd':           //d
             board.movePlayer(1, "right")
             break
-        case 115:           //s
+        case 's':           //s
             board.movePlayer(1, "down")
             break 
-        case 97:           //a
+        case 'a':           //a
             board.movePlayer(1, "left")
             break
-        case 105:           //i
+        case 'i':           //i
             board.movePlayer(2, "up")
             break
-        case 108:           //j
+        case 'l':           //l
             board.movePlayer(2, "right")
             break
-        case 107:           //k
+        case 'k':           //k
             board.movePlayer(2, "down")
             break 
-        case 106:           //l
+        case 'j':           //j
             board.movePlayer(2, "left")
             break 
         default: 

@@ -20,9 +20,11 @@ io.on('connection', function(socket){
     })
 
     socket.on('keypress', function(key) {
-        console.log('user pressed: '+key);
-        
+        // console.log('user pressed: '+key);
+        io.emit('key press', key)
     })
+
+    socket.on('game start' , function())
 })
 
 const port = 3000
