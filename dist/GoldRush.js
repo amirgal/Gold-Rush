@@ -1,6 +1,7 @@
 class player {
-    constructor(playerNum) {
+    constructor(playerNum,name) {
         this.playerNum = playerNum
+        this.name = name
         this.coords = {x:0, y:0}
         this.score = 0
     }
@@ -10,8 +11,8 @@ class GoldRush extends Matrix {
     constructor(rowNum,colNum) {
         super(rowNum,colNum, 'c')
         this.bounds = {y: rowNum-1, x: colNum-1}
-        this.player1 = new player(1)
-        this.player2 = new player(2)
+        this.player1 = new player(1,'player 1')
+        this.player2 = new player(2,'player 2')
         this.dimensions = this.getDimensions()
         this.player2.coords = {x: colNum-1, y: rowNum-1}
         this.alter(0,0,1)

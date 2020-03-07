@@ -8,6 +8,12 @@
     <title>Gold Rush</title>
 </head>
 <body>
+    <div id="login-container">
+        <h1 id="login-head">Login</h1>
+        <input type="text" id="username" placeholder="Enter Username">
+        <button id="login" onclick="showGame()">Log In</button>
+    </div>
+    <div id="game">
     <div id="chat-container">
         <div class="chat" id="chat"></div>
         <div id="chat-inputs">
@@ -45,14 +51,15 @@
 
     <script id="score-template" type="text/x-handlebars">
         <div class="player">
-            <span>player 1 :</span>
+            <span>{{player1.name}}</span>
             <span>{{player1.score}}</span>
         </div>
         <div class="player">
-            <span>player 2 :</span>
+            <span>{{player2.name}}</span>
             <span>{{player2.score}}</span>
         </div>
     </script>
+    </div>
 
     <script src="socket.io-client/dist/socket.io.js"></script>
     <script src="jquery/dist/jquery.js"></script>

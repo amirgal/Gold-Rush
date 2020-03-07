@@ -11,8 +11,14 @@ app.use(express.static(path.join(__dirname,'node_modules')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
+const users = []
 io.on('connection', function(socket){
     console.log('a user connected');
+    console.log(users)
+    socket.on('login', function(username){
+        users.push(username)
+        io.emit('login', users)
+    })
 
     socket.on('disconnect', function() {
         console.log('user disconnected');

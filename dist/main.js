@@ -1,8 +1,24 @@
 const renderer = new Renderer()
 let board
 let gameActive = false
+let activeUsers
+let username
 const socket = io();
-     
+$('#game').hide()
+
+const showGame = function() {
+    username = $('#username').val()
+    if(username.length > 0){
+        socket.emit('login',username)
+        $('#login-container').hide()
+        $('#game').show()
+    } else {alert('Must enter a username')}
+}
+
+socket.on('login',function(users) {
+    activeUsers = users
+})
+
 $('#send-msg-btn').on('click', function(){
     const msg = $('#message-input').val()
     $('#message-input').val('')
@@ -10,7 +26,7 @@ $('#send-msg-btn').on('click', function(){
 })
 
 socket.on('chat message', function(msg){
-    $('#chat').append(`<div class="message">${msg}</div>`)
+    $('#chat').append(`<div class="message"><span class="chat-name">${username}</span>:  ${msg}</div>`)
 })
 
 const startGame = function(rowNum,colNum) {
@@ -19,7 +35,7 @@ const startGame = function(rowNum,colNum) {
 
 const endGame = function() {
     gameActive = false
-    const winner = board.player1.score > board.player2.score ? 'player 1' : 'player 2'
+    const winner = board.player1.score > board.player2.score ? board.player1.name : board.player2.name
     renderer.renderGameOver(winner)
 }
 
@@ -36,6 +52,8 @@ socket.on('game start', function(newBoard){
     const dimensions = newBoard.dimensions  
     board = new GoldRush(dimensions.rows,dimensions.cols)
     board.matrix = newBoard.matrix
+    board.player1.name = activeUsers[0]
+    board.player2.name = activeUsers[1] ? activeUsers[1] : 'player 2'
     $('#game-container').css({"grid-template-rows": `repeat(${dimensions.rows},1fr)`,
     "grid-template-columns": `repeat(${dimensions.cols},1fr)`})
     renderer.renderBoard(board)
