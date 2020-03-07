@@ -1,7 +1,6 @@
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
-const api = require('./server/routes/api')
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http);
@@ -14,13 +13,13 @@ app.use(bodyParser.urlencoded({extended:false}))
 const users = []
 io.on('connection', function(socket){
     console.log('a user connected');
-    console.log(users)
     socket.on('login', function(username){
         users.push(username)
         io.emit('login', users)
     })
 
     socket.on('disconnect', function() {
+        users.pop()
         console.log('user disconnected');
     })
 
@@ -32,8 +31,8 @@ io.on('connection', function(socket){
         io.emit('game start', board)
     })
 
-    socket.on('chat message', function(msg){
-        io.emit('chat message', msg)
+    socket.on('chat message', function(msg, username){
+        io.emit('chat message', msg, username)
     })
 })
 

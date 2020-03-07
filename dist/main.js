@@ -17,16 +17,21 @@ const showGame = function() {
 
 socket.on('login',function(users) {
     activeUsers = users
+
+    // $('#chat').empty()
+    // activeUsers.forEach(user => {
+    //     $('#chat').append(`<div class="message"><span class="chat-name">${user} is logged in!</span></div>`)
+    // });
 })
 
 $('#send-msg-btn').on('click', function(){
     const msg = $('#message-input').val()
     $('#message-input').val('')
-    socket.emit('chat message', msg)
+    socket.emit('chat message', msg , username)
 })
 
-socket.on('chat message', function(msg){
-    $('#chat').append(`<div class="message"><span class="chat-name">${username}</span>:  ${msg}</div>`)
+socket.on('chat message', function(msg, sender){
+    $('#chat').append(`<div class="message"><span class="chat-name">${sender}</span>:  ${msg}</div>`)
 })
 
 const startGame = function(rowNum,colNum) {
