@@ -5,12 +5,7 @@ const socket = io();
      
 
 const startGame = function(rowNum,colNum) {
-    gameActive = true
     socket.emit('game start',new GoldRush(rowNum,colNum))
-    
-    // setTimeout(function(){
-    //     endGame()
-    // }, 10000)
 }
 
 const endGame = function() {
@@ -25,6 +20,10 @@ $('#start-button').on('click', function() {
 })
 
 socket.on('game start', function(newBoard){
+    setTimeout(function(){
+        endGame()
+    }, 10000)
+    gameActive = true
     const dimensions = newBoard.dimensions  
     board = new GoldRush(dimensions.rows,dimensions.cols)
     board.matrix = newBoard.matrix
