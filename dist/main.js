@@ -1,6 +1,8 @@
 const renderer = new Renderer()
 let board
 let gameActive = false
+const socket = io();
+     
 
 const startGame = function(rowNum,colNum) {
     gameActive = true
@@ -27,6 +29,8 @@ $('#start-button').on('click', function() {
 
 $(document).keypress(function (e) {
     if(!gameActive) {return}
+    socket.emit('keypress', e.which)
+    console.log(e.key);
     switch (e.which) {
         case 119:           //w
             board.movePlayer(1, "up")
