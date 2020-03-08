@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Gold Rush</title>
+</head>
+<body>
+    <div id="login-container">
+        <h1 id="login-head">Login</h1>
+        <input type="text" id="username" placeholder="Enter Username">
+        <button id="login" onclick="showGame()">Log In</button>
+    </div>
+    <div id="game">
+    <div id="chat-container">
+        <div class="chat" id="chat"></div>
+        <div id="chat-inputs">
+            <textarea id="message-input" placeholder="Enter Message" rows="4"></textarea>
+            <button id="send-msg-btn">Send Message</button>
+        </div>
+    </div>
+    <div id="game-container"></div>
+    <div id="scores"></div>
+    <div id="footer">
+        <div id="inputs">
+            <input type="number" id="row-input" class="input" placeholder="rows">
+            <input type="number" id="col-input" class="input" placeholder="cols">
+        </div>
+        <button id="start-button">Start</button>
+    </div>
+
+    <script id="matrix-template" type="text/x-handlebars">
+        {{#each matrix}}
+            {{#each this}}   
+                {{#if (isWall this)}}
+                    <div class="wall box"></div>
+                {{else if (isCoin this)}}
+                    <div class="box"><i class="fas fa-bone"></i></div>
+                {{else if (isPlayer1 this)}}
+                    <div class="box" id="player1"><i class="fas fa-dog"></i></div>
+                {{else if (isPlayer2 this)}}
+                    <div class="box" id="player2"><i class="fas fa-dog"></i></div>
+                {{else}}
+                    <div class="box">{{this}}</div>
+                {{/if}}
+            {{/each}}
+        {{/each}}
+    </script>
+
+    <script id="score-template" type="text/x-handlebars">
+        <div class="player">
+            <span>{{player1.name}}</span>
+            <span>{{player1.score}}</span>
+        </div>
+        <div class="player">
+            <span>{{player2.name}}</span>
+            <span>{{player2.score}}</span>
+        </div>
+    </script>
+    </div>
+
+    <script src="socket.io-client/dist/socket.io.js"></script>
+    <script src="jquery/dist/jquery.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.js"></script>
+    <script src="handlebars/dist/handlebars.js"></script>
+    <script src="Matrix.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="GoldRush.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
